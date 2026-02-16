@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --gradient-mesh: radial-gradient(at 40% 20%, rgba(45, 95, 76, 0.15) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, rgba(212, 175, 55, 0.1) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, rgba(139, 110, 78, 0.1) 0px, transparent 50%);
+  }
+  
+  body {
+    @apply bg-urdu-light text-urdu-dark font-body;
+    direction: ltr;
+  }
+
+  .urdu-text {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    direction: rtl;
+  }
+}
+
+@layer components {
+  .gradient-mesh {
+    background: var(--gradient-mesh);
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .ornate-border {
+    position: relative;
+  }
+
+  .ornate-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, #D4AF37, #2D5F4C, #8B6E4E);
+    border-radius: inherit;
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.5s;
+  }
+
+  .shine-effect:hover::after {
+    left: 100%;
+  }
+
+  .islamic-pattern {
+    background-image: 
+      repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(45, 95, 76, 0.03) 10px, rgba(45, 95, 76, 0.03) 20px),
+      repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(139, 110, 78, 0.03) 10px, rgba(139, 110, 78, 0.03) 20px);
+  }
+}
+
+@layer utilities {
+  .text-shadow-gold {
+    text-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+  }
+
+  .border-ornate {
+    border-image: linear-gradient(45deg, #D4AF37, #2D5F4C) 1;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f1e8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2D5F4C, #8B6E4E);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8B6E4E, #D4AF37);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s infinite linear;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
